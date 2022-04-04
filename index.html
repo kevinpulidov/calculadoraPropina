@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de propinas</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h3>CALCULDORA DE PROPINAS</h3>
+    <div>
+       
+        <p>¿Cuánto fue su factura?</p>
+        <input type="text" min="1" placeholder="$ " name="prop" id="prop" autofocus onkeypress="return solonumeros(event)" onpaste="return false">
+        <p>¿Cuántas personas comparten la factura?</p>
+        <input type="text" name="personas" min="1" id="personas" placeholder="" onkeypress="return solonumeros(event)" onpaste="return false">
+        
+        <p>¿Como fue el servicio?</p>
+        <select id="servicio" onchange="otros(this.value)">
+            <option selected="true" id="0" disabled="true">Selecciona una opcion</option>
+            <option id="20">20% - Muy bueno</option>
+            <option id="10">10% - Bueno</option>
+            <option id="2">2% - Regular</option>
+            <option id="0">Otro</option>
+        </select>
+            <div id="otroValor">
+                    <input hidden="true" type="number" min="1" id="personalizado" name="personalizado">
+            </div>
+        <div id="resultado"></div>
+        <div id="resultado2"></div>
+        <div id="resultado3"></div>
+        <div>
+            <button id="limpiar" onclick="limpiar()" >Limpiar</button><button id="calcular"
+            onclick="calcular(); desactivar()">Calcular</button>
+        </div>
+
+    </div> 
+    
+    <script type="text/javascript" src="js/propinas.js">
+        
+        function desactivar(){
+        document.getElementById('caja').disabled=true;
+    }
+        function solonumeros(e){
+
+            key=e.keyCode || e.which;
+
+            teclado=String.fromCharCode(key);
+
+            numeros="0123456789";
+
+            especiales="8-37-38-46";
+
+            teclado_especial=false;
+
+            for(var i in especiales){
+                if(key==especiales[i]){
+                    teclado_especial=true;
+                }
+            }
+
+            if(numeros.indexOf(teclado)==-1 && !teclado_especial){
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
